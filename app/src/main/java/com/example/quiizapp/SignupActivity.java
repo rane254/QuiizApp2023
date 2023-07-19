@@ -23,11 +23,11 @@ import com.google.firebase.ktx.Firebase;
 
 public class SignupActivity extends AppCompatActivity
 {
-    TextView dSignup;
-    EditText editTextEmailAddress,editTextPassword2,editTextPassword3;
-    Button btnSignup;
-    FirebaseAuth mAuth;
-    ProgressBar progressBar;
+    private TextView dSignup;
+    private EditText editTextEmailAddress,editTextPassword2,editTextPassword3;
+    private Button btnSignup;
+    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
 
 
     /*@Override
@@ -93,23 +93,24 @@ public class SignupActivity extends AppCompatActivity
                     return;
                 }
 
-                mAuth.createUserWithEmailAndPassword(email, password2).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                if (password2.length() < 6)
                 {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
+                    Toast.makeText(SignupActivity.this,"Password too short, Enter minimum 6 characters!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.createUserWithEmailAndPassword(email, password2).addOnCompleteListener(SignupActivity.this,(task) -> {
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful())
                     {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful())
-                        {
-                            // Sign in success, update UI with the signed-in user's information
-                            // FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(SignupActivity.this, "Account created. Please Login",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(SignupActivity.this, "Authentication failed. Please Try again",Toast.LENGTH_SHORT).show();
-                        }
+                        // Sign in success, update UI with the signed-in user's information
+                        // FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(SignupActivity.this, "Account created. Please Login",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(SignupActivity.this, "Email id is already registered!",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -136,5 +137,11 @@ public class SignupActivity extends AppCompatActivity
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
     }
 }
