@@ -50,6 +50,15 @@ public class SignupActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
+        if (mAuth.getCurrentUser() != null)
+        {
+            Intent intent = new Intent(SignupActivity.this, MainActivity2.class);
+            startActivity(intent);
+            finish();
+        }
+
+        mAuth = FirebaseAuth.getInstance();
+
         progressBar = findViewById(R.id.progressBar);
 
         dSignup = findViewById(R.id.dSignup);
