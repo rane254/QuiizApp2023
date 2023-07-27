@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/design_default_color_primary"
     tools:context=".DashboardActivity">
 
     <RelativeLayout
@@ -39,19 +38,22 @@
     <TextView
         android:id="@+id/questionTextView"
         android:layout_width="match_parent"
+        android:layout_height="331dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/black"
-        android:layout_height="98dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         android:textSize="20sp" />
 
     <RadioGroup
         android:id="@+id/answerRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="229dp"
-        android:layout_below="@id/questionTextView"
+        android:layout_height="145dp"
         android:layout_marginTop="20dp"
-        android:orientation="vertical"></RadioGroup>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        android:scrollbarSize="8dp" />
 
     <LinearLayout
         android:id="@+id/submitButton"
@@ -59,7 +61,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:background="@drawable/nxt_btn_shape"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp">
 

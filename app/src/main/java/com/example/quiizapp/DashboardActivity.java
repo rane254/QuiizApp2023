@@ -59,11 +59,60 @@ public class DashboardActivity extends AppCompatActivity {
     private void initializeQuestions() {
         // Add your questions and options here
         // For example:
-        questions.add(new Question("What is the capital of France?",
-                new String[]{"London", "Paris", "Berlin"}, 1));
+        questions.add(new Question("The C++ code which causes abnormal termination/behaviour of a program should be written under _________ block.",
+                new String[]{"catch", "throw", "try","finally"}, 2));
 
-        questions.add(new Question("Which planet is closest to the Sun?",
-                new String[]{"Venus", "Mercury", "Mars"}, 1));
+        questions.add(new Question("By default, all the files in C++ are opened in _________ mode.",
+                new String[]{"Text", "Binary", "ISCII","VTC"}, 0));
+
+        questions.add(new Question("What is C++?",
+                new String[]{"C++ is an object oriented programming language", "C++ is a procedural programming language", "C++ supports both procedural and object oriented programming language","C++ is a functional programming language"}, 2));
+
+        questions.add(new Question("Which of the following is the correct syntax of including a user defined header files in C++?",
+                new String[]{"#include [userdefined]", "#include “userdefined”", "#include <userdefined.h>","#include <userdefined>"}, 1));
+
+        questions.add(new Question("Which of the following is a correct identifier in C++?",
+                new String[]{"VAR_1234", "$var_name", "7VARNAME","7var_name"}, 0));
+
+        questions.add(new Question("Which of the following is not a type of Constructor in C++?",
+                new String[]{"Default constructor", "Parameterized constructor", "Copy constructor","Friend constructor"}, 3));
+
+        questions.add(new Question("Which of the following approach is used by C++?",
+                new String[]{"Left-right", "Right-left", "Bottom-up","Top-down"}, 2));
+
+        questions.add(new Question("What happens if the following C++ statement is compiled and executed?\n" +
+                "\n" +
+                "int *ptr = NULL;\n" +
+                "delete ptr;",
+                new String[]{"The program is not semantically correct", "The program is compiled and executed successfully", "The program gives a compile-time error","The program compiled successfully but throws an error during run-time"}, 1));
+
+        questions.add(new Question("What will be the output of the following C++ code?\n" +
+                "\n" +
+                "    #include <iostream>\n" +
+                "    using namespace std;\n" +
+                "    int main ()\n" +
+                "    {\n" +
+                "        int a, b, c;\n" +
+                "        a = 2;\n" +
+                "        b = 7;\n" +
+                "        c = (a > b) ? a : b;\n" +
+                "        cout << c;\n" +
+                "        return 0;\n" +
+                "    }.",
+                new String[]{"12", "14", "6","7"}, 3));
+
+        questions.add(new Question("What will be the output of the following C++ code?\n" +
+                "\n" +
+                "#include<iostream>\n" +
+                "using namespace std;\n" +
+                "int main ()\n" +
+                "{\n" +
+                "   int cin;\n" +
+                "   cin >> cin;\n" +
+                "   cout << \"cin: \" << cin;\n" +
+                "   return 0;\n" +
+                "}",
+                new String[]{"Segmentation fault", "Nothing is printed", "Error","cin: garbage value"}, 3));
 
         // Add more questions as needed
     }
@@ -101,6 +150,8 @@ public class DashboardActivity extends AppCompatActivity {
             if (currentQuestionIndex < questions.size()) {
                 displayQuestion();
             } else {
+                Intent intent = new Intent(DashboardActivity.this,ResultActivity.class);
+                startActivity(intent);
                 finish();
             }
         } else {

@@ -1,9 +1,13 @@
 package com.example.quiizapp;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -63,44 +67,49 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(new View.OnClickListener()
         {
+
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password1;
                 email = editTextEmailAddress1.getText().toString();
                 password1 = String.valueOf(editTextPassword1.getText().toString());
 
-                if (TextUtils.isEmpty(email))
+                if (CheckNetwork.isInternetAvailable(LoginActivity.this)) //returns true if internet available
                 {
-                    Toast.makeText(LoginActivity.this,"Enter your email",Toast.LENGTH_SHORT).show();
-                    return;
+
+                    if (TextUtils.isEmpty(email)) {
+                        Toast.makeText(LoginActivity.this, "Enter your email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(password1)) {
+                        Toast.makeText(LoginActivity.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
 
-                if (TextUtils.isEmpty(password1))
-                {
-                    Toast.makeText(LoginActivity.this,"Enter your password",Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 mAuth.signInWithEmailAndPassword(email, password1).addOnCompleteListener(LoginActivity.this, (task) ->
-                    {
+                {
 
-                            progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                // FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, "Login Successful.",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                            else
-                            {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(LoginActivity.this, "Authentication failed! Please Try again",Toast.LENGTH_SHORT).show();
-                            }
-                    });
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        // FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(LoginActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(LoginActivity.this, "Authentication failed! Please Try again", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         });
