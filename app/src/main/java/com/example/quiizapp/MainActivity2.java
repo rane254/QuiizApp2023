@@ -51,10 +51,10 @@ public class MainActivity2 extends AppCompatActivity {
 
         ArrayList<String> QuizList = new ArrayList<>();
         QuizList.add("C/C++");
-        QuizList.add("Java");
-        QuizList.add("Python");
-        QuizList.add("Android");
-        QuizList.add("Javascript");
+        //QuizList.add("Java");
+        //QuizList.add("Python");
+        //QuizList.add("Android");
+        //QuizList.add("Javascript");
         ArrayAdapter<String> Adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,QuizList);
 
         myListView.setAdapter(Adapter);
@@ -62,8 +62,9 @@ public class MainActivity2 extends AppCompatActivity {
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity2.this,DashboardActivity.class);
+                startActivity(intent);
                 String text = "Opening " + i + " " + ((TextView) view).getText().toString();
-                Toast.makeText(MainActivity2.this,text + " Clicked", Toast.LENGTH_LONG).show();
             }
         });
 

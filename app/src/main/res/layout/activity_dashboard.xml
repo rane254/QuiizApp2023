@@ -35,107 +35,38 @@
             android:textSize="35sp"/>
     </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="50dp"
-        app:cardCornerRadius="10dp"
+
+    <TextView
+        android:id="@+id/questionTextView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="50dp">
+        android:textColor="@color/black"
+        android:layout_height="98dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Question 1"
-            android:textSize="20sp"
-            android:id="@+id/cardQuestion"/>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+    <RadioGroup
+        android:id="@+id/answerRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:layout_below="@id/questionTextView"
         android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Option - A"
-            android:textSize="20sp"
-            android:id="@+id/cardOptionA"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Option - B"
-            android:textSize="20sp"
-            android:id="@+id/cardOptionB"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Option - C"
-            android:textSize="20sp"
-            android:id="@+id/cardOptionC"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Option - D"
-            android:textSize="20sp"
-            android:id="@+id/cardOptionD"/>
-    </androidx.cardview.widget.CardView>
+        android:orientation="vertical"></RadioGroup>
 
     <LinearLayout
+        android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:background="@drawable/nxt_btn_shape"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NEXT"
+            android:text="SUBMIT"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textAllCaps="true"
