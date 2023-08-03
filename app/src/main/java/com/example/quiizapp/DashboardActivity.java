@@ -20,11 +20,14 @@ import java.util.Collections;
 public class DashboardActivity extends AppCompatActivity {
 
     private ImageView img_back;
-    private TextView txt_exit,questionTextView;
+    private TextView txt_exit,questionTextView,timerTextView;
     private RadioGroup answerRadioGroup;
-    private LinearLayout submitButton;
+    private TextView submitButton;
     private ArrayList<Question> questions;
     private int currentQuestionIndex = 0;
+    private int correctAnswers = 0; // To keep track of correct answers
+    private CountDownTimer timer;
+    private static final long COUNTDOWN_TIME = 16000; // 11 seconds (adjust as needed)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         img_back = findViewById(R.id.img_back);
         txt_exit = findViewById(R.id.txt_exit);
+        timerTextView = findViewById(R.id.timerTextView);
         questionTextView = findViewById(R.id.questionTextView);
         answerRadioGroup = findViewById(R.id.answerRadioGroup);
         submitButton = findViewById(R.id.submitButton);
@@ -40,6 +44,10 @@ public class DashboardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this, MainActivity2.class);
                 startActivity(intent);
+                if (timer != null)
+                {
+                    timer.cancel();
+                }
             }
         });
         // Initialize questions and options
@@ -47,14 +55,54 @@ public class DashboardActivity extends AppCompatActivity {
         initializeQuestions();
 
         displayQuestion();
+        startTimer(COUNTDOWN_TIME); // Start the timer when a new question is displayed
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 checkAnswer();
+                // Reset the timer
+                startTimer(COUNTDOWN_TIME);
             }
         });
+
     }
+
+    private void startTimer(long timeInMillis)
+    {
+        if (timer != null)
+        {
+            timer.cancel();
+        }
+
+        timer = new CountDownTimer(timeInMillis, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText("Time remaining: " + millisUntilFinished / 1000 + " seconds");
+                // Update the timer display (if you have a TextView to display the timer)
+                // For example: timerTextView.setText("Time remaining: " + millisUntilFinished / 1000 + " seconds");
+            }
+
+            public void onFinish() {
+                // Timer finished, show "Time's up" toast and proceed to the next question
+                Toast.makeText(DashboardActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.size()-1) {
+                    displayQuestion();
+                    startTimer(COUNTDOWN_TIME); // Start the timer again for the next question
+                } else {
+                    // No more questions, proceed to the ResultActivity
+                    if (timer != null)
+                    {
+                        timer.cancel();
+                    }
+                    showResult();
+                }
+            }
+        }.start();
+    }
+
+
 
     private void initializeQuestions() {
         // Add your questions and options here
@@ -63,7 +111,7 @@ public class DashboardActivity extends AppCompatActivity {
                 new String[]{"catch", "throw", "try","finally"}, 2));
 
         questions.add(new Question("By default, all the files in C++ are opened in _________ mode.",
-                new String[]{"Text", "Binary", "ISCII","VTC"}, 0));
+                new String[]{"VTC", "Binary", "ISCII","Text"}, 3));
 
         questions.add(new Question("What is C++?",
                 new String[]{"C++ is an object oriented programming language", "C++ is a procedural programming language", "C++ supports both procedural and object oriented programming language","C++ is a functional programming language"}, 2));
@@ -72,7 +120,7 @@ public class DashboardActivity extends AppCompatActivity {
                 new String[]{"#include [userdefined]", "#include “userdefined”", "#include <userdefined.h>","#include <userdefined>"}, 1));
 
         questions.add(new Question("Which of the following is a correct identifier in C++?",
-                new String[]{"VAR_1234", "$var_name", "7VARNAME","7var_name"}, 0));
+                new String[]{"7var_name", "$var_name", "7VARNAME","VAR_1234"}, 3));
 
         questions.add(new Question("Which of the following is not a type of Constructor in C++?",
                 new String[]{"Default constructor", "Parameterized constructor", "Copy constructor","Friend constructor"}, 3));
@@ -133,7 +181,8 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void checkAnswer() {
         int selectedRadioButtonId = answerRadioGroup.getCheckedRadioButtonId();
-        if (selectedRadioButtonId != -1) {
+        if (selectedRadioButtonId != -1)
+        {
             RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
             int selectedOptionIndex = selectedRadioButton.getId();
 
@@ -141,21 +190,35 @@ public class DashboardActivity extends AppCompatActivity {
             int correctOptionIndex = currentQuestion.getCorrectOptionIndex();
 
             if (selectedOptionIndex == correctOptionIndex) {
+                correctAnswers++;
                 Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
             }
 
             currentQuestionIndex++;
-            if (currentQuestionIndex < questions.size()) {
+            if (currentQuestionIndex < questions.size())
+            {
                 displayQuestion();
-            } else {
-                Intent intent = new Intent(DashboardActivity.this,ResultActivity.class);
-                startActivity(intent);
-                finish();
+                startTimer(COUNTDOWN_TIME); // Start the timer again for the next question
             }
-        } else {
+            else
+            {
+                showResult();
+            }
+        }
+        else
+        {
             Toast.makeText(this, "Please select an answer", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void showResult()
+    {
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("totalQuestions", questions.size());
+        intent.putExtra("correctAnswers", correctAnswers);
+        startActivity(intent);
+        finish(); // Optional: If you want to close the quiz activity after displaying the result.
     }
 }

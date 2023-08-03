@@ -17,9 +17,19 @@
         android:textSize="30dp"
         android:textAlignment="center" />
 
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="253dp"
+        android:layout_marginTop="30dp"
+        android:hint=""
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30dp" />
+
     <ImageButton
         android:id="@+id/btnHome"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

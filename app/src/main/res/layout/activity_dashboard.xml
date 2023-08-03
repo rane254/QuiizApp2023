@@ -32,15 +32,36 @@
             android:textColor="@color/white"
             android:layout_marginEnd="15dp"
             android:textSize="35sp"/>
+
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:background="@drawable/nxt_btn_shape"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp">
+
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:text="Time remaining: 15 seconds"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/questionTextView"
         android:layout_width="match_parent"
-        android:layout_height="331dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="287dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -56,9 +77,8 @@
         android:scrollbarSize="8dp" />
 
     <LinearLayout
-        android:id="@+id/submitButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:background="@drawable/nxt_btn_shape"
         android:layout_marginTop="20dp"
@@ -66,13 +86,16 @@
         android:layout_marginEnd="35dp">
 
         <TextView
+            android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
             android:text="SUBMIT"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:textAllCaps="true"
-            android:textSize="25dp"/>
+            android:textSize="25sp" />
     </LinearLayout>
+
 
 </LinearLayout>
