@@ -51,7 +51,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         ArrayList<String> QuizList = new ArrayList<>();
-        QuizList.add("C/C++");
+        QuizList.add("General Knowledge");
         //QuizList.add("Java");
         //QuizList.add("Python");
         //QuizList.add("Android");

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E68D09"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +11,7 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome User!! \n It is a Teacher Student interactive exam preparation app \n By Brijesh and Vyshag."
+        android:text="Welcome User!! \n It is a Simple Quiiz App \n By Brijesh and Vyshag."
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:text="Get Stared"
+        android:background="#00C9A8"
         android:textColorHighlight="#047A66"
         android:textColorLink="#00CBA9"
         app:layout_constraintEnd_toEndOf="parent"

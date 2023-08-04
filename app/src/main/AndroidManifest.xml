@@ -29,11 +29,9 @@
             android:exported="false" />
         <activity
             android:name=".WrongActivity"
-            android:screenOrientation="locked"
             android:exported="false" />
         <activity
             android:name=".RightActivity"
-            android:screenOrientation="locked"
             android:exported="false" />
         <activity
             android:name=".ShowAnswers"

@@ -2,8 +2,10 @@ package com.example.quiizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -50,13 +52,13 @@ public class QuestionActivity extends AppCompatActivity {
                 add(new Question("What is the value of Pi ?", "C", "3.4151", "3.4511","3.1415", "3.1514"));
                 add(new Question("When was the first Flip Flop developed ?", "A", "1918", "1920","2000", "1912"));
                 add(new Question("Who is the father of computer? ", "C", "Charles Darwin", "Ada Lovelace","Charles Babbage", "Tobin Bell"));
-                add(new Question("Who is elon musk?", "B", "A scientist", "Coolest guy ever", "I don't know", "Billie Eilish"));
+                add(new Question("Who is elon musk?", "B", "A scientist", "Richest guy ever", "I don't know", "Billie Eilish"));
                 add(new Question("When was the Sony Playstation released?", "A", "1994", "1992", "2000", "1999"));
                 add(new Question("The first fully 64-bit compatible version of android is :","C", "4.4 Kitkat","4.2 Jellybean", "5.0 Lollipop","8.0 Oreo"));
                 add(new Question("One of the main reasons for Android requiring more RAM is:","D","High performance","More Apps in the Background","Heavy Apps","Java's Garbage Collector"));
                 add(new Question("Which data structure implements FIFO(First In First Out) method?","B","Stack","Queue","Graph","Tree"));
                 add(new Question("What is the right syntax in Java for printing something to the console?","A","System.out.println()","Console.writeline()","printf()","writeToCOnsole()"));
-                add(new Question("Who is the best video game character ever made?","C","Vaas (Far Cry 3)","Arthur Morgan(Red Dead Redemption 2)","Both A and B","Video Games Suck!"));
+                add(new Question("Who is the best football video game ever made?","C","Pes","Fifa","Both A and B","No one"));
             }
         };
 
@@ -82,6 +84,7 @@ public class QuestionActivity extends AppCompatActivity {
         a10 = questions.get(9).getAns();
         loadQuestion();
     }
+
 
     @Override
     protected void onRestart(){
@@ -110,27 +113,22 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void loadAnswer(View view) {
         int op = radioGroup.getCheckedRadioButtonId();
+        Log.d("DEBUG", "Selected radio button ID: " + op);
 
-        if (op == R.id.optionA)
-        {
+        if (op == R.id.optionA) {
             Answer = "A";
-        }
-        else if (op == R.id.optionB)
-        {
+        } else if (op == R.id.optionB) {
             Answer = "B";
-        }
-        else if (op == R.id.optionC)
-        {
+        } else if (op == R.id.optionC) {
             Answer = "C";
-        }
-        else if (op == R.id.optionD)
-        {
+        } else if (op == R.id.optionD) {
             Answer = "D";
-        }
-        else
-        {
+        } else {
+            // Handle the case when no radio button is selected
+            Log.d("DEBUG", "Invalid radio button ID");
             return;
         }
 
