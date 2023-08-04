@@ -1,101 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context=".DashboardActivity">
 
-    <RelativeLayout
-        android:background="#212121"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60sp" >
+        android:layout_height="650dp"
+        app:layout_constraintBottom_toTopOf="@+id/userDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
 
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="41dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/back_logo"
-            android:backgroundTint="@color/white"/>
-
-        <TextView
-            android:id="@+id/txt_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Exit"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/white"
-            android:layout_marginEnd="15dp"
-            android:textSize="35sp"/>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:background="@drawable/nxt_btn_shape"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp">
-
-        <TextView
-            android:id="@+id/timerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ListView
+            android:id="@+id/myListView"
+            android:layout_width="409dp"
+            android:layout_height="729dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_vertical"
-            android:text="Time remaining: 15 seconds"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/questionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="287dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <RadioGroup
-        android:id="@+id/answerRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:orientation="vertical"
-        android:scrollbarSize="8dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:background="@drawable/nxt_btn_shape"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp">
-
-        <TextView
-            android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_vertical"
-            android:text="SUBMIT"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-    </LinearLayout>
+        android:id="@+id/userDetails"
+        android:layout_width="350dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="29dp"
+        android:textAlignment="center"
+        android:text="Welcome User"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="RtlCompat" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

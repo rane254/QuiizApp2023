@@ -17,13 +17,34 @@
         android:theme="@style/Theme.QuiizApp"
         tools:targetApi="31">
         <activity
-            android:name=".ResultActivity"
-            android:exported="false" />
-        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
+            android:name=".QuestionActivity"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".ShowScoreActivity"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".WrongActivity"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".RightActivity"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".ShowAnswers"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
+            android:screenOrientation="locked"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,13 +53,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
             android:name=".SignupActivity"
+            android:screenOrientation="locked"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="locked"
             android:exported="true" />
     </application>
 
